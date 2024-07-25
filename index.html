@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>あすもぐ</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
+  <script src="js/script.js"></script>
+</head>
+
+<body>
+
+<!-- ヘッダー -->
+<header class="header">
+  <button class="hamburger-menu" id="js-hamburger-menu">
+    <span class="hamburger-menu__bar"></span>
+    <span class="hamburger-menu__bar"></span>
+    <span class="hamburger-menu__bar"></span>
+  </button>
+  <nav class="navigation">
+    <ul class="navigation__list">
+      <li class="navigation__list-item"><a href="#ABOUT" class="navigation__link">ABOUT</a></li>
+      <li class="navigation__list-item"><a href="#COURSE" class="navigation__link">COURSE</a></li>
+      <li class="navigation__list-item"><a href="#NEWS" class="navigation__link">NEWS</a></li>
+      <li class="navigation__list-item"><a href="#ACCESS" class="navigation__link">ACCESS</a></li>
+      <li class="navigation__list-item"><a href="#CONTACT" class="navigation__link">CONTACT</a></li>
+    </ul>
+  </nav>
+
+  <div class="logo">
+    <img src="./img/header_logo.png" alt="チーズアカデミーロゴ" class="logo_img">  
+  </div>
+
+  <div class="lang_select">
+    <div class="lang">
+      <a href=#>JP</a>
+    </div>
+    <div class="lang">
+      <a href=#>EN</a>
+    </div>
+  </div>
+</header>
+
+
+
+<!-- カルーセルその２ -->
+<section class="carousel2">
+  <div class="contains">
+    <input class="slide_select" type="radio" id="SlideA" name="slide_check" checked />
+    <input class="slide_select" type="radio" id="SlideB" name="slide_check" />
+    <input class="slide_select" type="radio" id="SlideC" name="slide_check" />
+    <!-- スライド1番目 -->
+    <div class="slide">
+      <div class="scroll_controler"><!-- 使われていないクラス -->
+        <label class="scroll_button scroll_prev" for="SlideC"></label>
+        <label class="scroll_button scroll_next" for="SlideB"></label>
+      </div>
+      <div class="tbd"><!-- 使われていないクラス -->
+          <img src="./img/mainbg.png" alt="コースイメージ１" class="tbd_img">
+      </div>
+      <div class="tbd2"><!-- 使われていないクラス -->
+          <P>世界が恋する海 慶良間</P>
+      </div>
+    </div>
+    <!-- スライド2番目 -->
+    <div class="slide">
+      <div class="scroll_controler"><!-- 使われていないクラス -->
+        <label class="scroll_button scroll_prev" for="SlideA"></label>
+        <label class="scroll_button scroll_next" for="SlideC"></label>
+      </div>
+      <div class="tbd"><!-- 使われていないクラス -->
+          <img src="./img/mainbg.png" alt="コースイメージ２" class="tbd_img">
+      </div>
+      <div class="tbd2"><!-- 使われていないクラス -->
+          <P>ダイビングポイント予報</P>
+      </div>
+    </div>
+    <!-- スライド3番目 -->
+    <div class="slide">
+      <div class="scroll_controler"><!-- 使われていないクラス -->
+        <label class="scroll_button scroll_prev" for="SlideB"></label>
+        <label class="scroll_button scroll_next" for="SlideA"></label>
+      </div>
+      <div class="tbd"><!-- 使われていないクラス -->
+          <img src="./img/mainbg.png" alt="コースイメージ３" class="tbd_img">
+      </div>
+      <div class="tbd2"><!-- 使われていないクラス -->
+          <P>明日どこで潜る？</P>
+      </div>
+  </div> 
+    <!-- スライド移動用ボタン -->
+  <div class="move_controler">
+    <label class="button_move" for="SlideA"></label>
+    <label class="button_move" for="SlideB"></label>
+    <label class="button_move" for="SlideC"></label>
+  </div>
+ </div> 
+</section>
+
+<h2><span class="marker">慶良間諸島の天気</span></h2>
+<!-- <div id="city-name"></div> -->
+<div id="weather"></div>
+<div id="error-message"></div>
+<!-- <iframe width="100%" height="450" src="https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=default&metricTemp=default&metricWind=default&zoom=11&overlay=wind&product=ecmwf&level=surface&lat=26.19&lon=127.325" frameborder="0"></iframe> -->
+
+<!-- Searchはここから -->
+<section class="serarch">
+
+  <h2><span class="marker">ダイビング予報</span></h2>
+
+  <form id="forecast-form" action="process.php" method="POST" onsubmit="handleSubmit(event)">
+
+    <div class="point_select">
+      <div class="point">阿嘉島
+        <div class="nakami">
+          <div class="img_container">
+            <label for="aka">
+            <img src="./img/aka.PNG" alt="チーズアカデミーロゴ"  class="point_img"> 
+            </label>
+          </div>
+          <div>
+            <input type="radio" id="aka" name="point" value="阿嘉島" checked />
+          </div>
+        </div>
+      </div>
+      <div class="point">座間味島
+        <div class="nakami">
+          <div class="img_container">
+            <label for="zamami">
+            <img src="./img/zamami.PNG" alt="チーズアカデミーロゴ"  class="point_img"> 
+            </label>
+          </div>
+          <div>
+            <input type="radio" id="zamami" name="point" value="座間味島" />
+          </div>
+        </div>
+      </div>
+      <div class="point">渡嘉敷島
+        <div class="nakami">
+          <div class="img_container">
+            <label for="tokashiki">
+            <img src="./img/tokashiki.PNG" alt="チーズアカデミーロゴ"  class="point_img"> 
+            </label>
+          </div>
+          <div>
+            <input type="radio" id="tokashiki" name="point" value="渡嘉敷島" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="date_select">
+      <label for="date">日付:</label>
+      <input type="date" id="date" name="date" required>
+      <input type="hidden" id="wind-direction" name="wind-direction" value="">
+      <input type="submit" value="照会">
+    </div>
+  </form>
+</section>
+<!-- Searchはここまで -->
+
+<!-- Resultはここから -->
+<section class="result">
+
+
+</section>
+<!-- Resultはここまで -->
+
+<!-- Contactはここから -->
+<section class="contact">
+
+  <h2><span class="marker">ダイビングショップを探す</span></h2>
+
+  <div class="obi">
+    <div class="line">
+      <p>LINEで問い合せ</p>
+    </div>
+  </div>
+
+  <div class="obi2">
+    <div class="intra">
+      <div class="intra_icon">
+        <img src="./img/ramen.png" alt="ダイブショップ" class="divingShop">
+      </div>
+      <div class="intra_comment">
+        <p>那覇市内のショップです。泊港からダイブボートで慶良間にお連れします。</p>
+      </div>
+    </div>
+    <div class="intra">
+      <div class="intra_icon">
+        <img src="./img/ramen.png" alt="ダイブショップ" class="divingShop">
+      </div>
+      <div class="intra_comment">
+        <p>那覇市内のショップです。泊港からダイブボートで慶良間にお連れします。</p>
+      </div>
+    </div>
+    <div class="intra">
+      <div class="intra_icon">
+        <img src="./img/ramen.png" alt="ダイブショップ" class="divingShop">
+      </div>
+      <div class="intra_comment">
+        <p>那覇市内のショップです。泊港からダイブボートで慶良間にお連れします。</p>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- Footerはここから -->
+<footer>
+  <div class="footer_container">
+  <p class="footer_text">copyrights 2016 Cheeese Academy Tokyo All RIghts Reserved.</p>
+  </div>
+</footer>
+<!-- Footerはここまで -->
+
+</body>
+
+</html>
